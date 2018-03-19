@@ -22,10 +22,16 @@ export class CompanyService {
       .catch(this.errorHandler)
   }
 
-  getCompanies(): Observable<Company[]> {
+  // getCompanies(): Observable<Company[]> {
+  //   return this.http.get(`${this.API_BASE}/company`)
+  //     .map(data => data.json())
+  //     .catch(this.errorHandler);
+  // }
+
+  public getCompanies(): Observable<Array<Company>> {
     return this.http.get(`${this.API_BASE}/company`)
       .map(data => data.json())
-      .catch(this.errorHandler);
+      .catch(err => this.errorHandler(err));
   }
 
   deleteCompany(companyId: number): Observable<any> {
